@@ -8,7 +8,10 @@ import { Blog } from '@/helpers/Enums';
 
 
 const Home = () => {
+
+  //data use state is to store all data 
   const [data, setData] = useState<Blog[]>();
+  //filter data use state is to store only filtered Data data 
   const [filterData, setFilterData] = useState<Blog[]>();
   const router = useRouter()
 
@@ -20,9 +23,12 @@ const Home = () => {
     })()
   }, [])
 
+  //this handle description function used to show ... for long data
   const handleDescription = (text: string) => {
     return text ? text.length > 100 ? text.slice(0, 100) + '...' : text : '-'
   }
+
+  //This function is responsible to handle the search
   const search = async (event: any) => {
     if (event.target.value) {
       const data: any = await filterBlog(event)
